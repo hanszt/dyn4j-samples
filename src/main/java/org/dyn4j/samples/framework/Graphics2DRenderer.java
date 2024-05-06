@@ -56,30 +56,25 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, Shape shape, double scale, Color color) {
+	public static void render(Graphics2D g, Shape shape, double scale, Color color) {
 		// no-op
 		if (shape == null) return;
 		
 		// just default the color
 		if (color == null) color = Color.ORANGE;
-		
-		if (shape instanceof Circle) {
-			Graphics2DRenderer.render(g, (Circle)shape, scale, color);
-		} else if (shape instanceof Polygon) {
-			Graphics2DRenderer.render(g, (Polygon)shape, scale, color);
-		} else if (shape instanceof Segment) {
-			Graphics2DRenderer.render(g, (Segment)shape, scale, color);
-		} else if (shape instanceof Capsule) {
-			Graphics2DRenderer.render(g, (Capsule)shape, scale, color);
-		} else if (shape instanceof Ellipse) {
-			Graphics2DRenderer.render(g, (Ellipse)shape, scale, color);
-		} else if (shape instanceof Slice) {
-			Graphics2DRenderer.render(g, (Slice)shape, scale, color);
-		} else if (shape instanceof HalfEllipse) {
-			Graphics2DRenderer.render(g, (HalfEllipse)shape, scale, color);
-		} else {
-			// unknown shape
-		}
+
+        switch (shape) {
+            case Circle circle -> Graphics2DRenderer.render(g, circle, scale, color);
+            case Polygon polygon -> Graphics2DRenderer.render(g, polygon, scale, color);
+            case Segment segment -> Graphics2DRenderer.render(g, segment, scale, color);
+            case Capsule capsule -> Graphics2DRenderer.render(g, capsule, scale, color);
+            case Ellipse ellipse -> Graphics2DRenderer.render(g, ellipse, scale, color);
+            case Slice slice -> Graphics2DRenderer.render(g, slice, scale, color);
+            case HalfEllipse halfEllipse -> Graphics2DRenderer.render(g, halfEllipse, scale, color);
+            default -> {
+                // unknown shape
+            }
+        }
 	}
 	
 	/**
@@ -89,7 +84,7 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, Circle circle, double scale, Color color) {
+	public static void render(Graphics2D g, Circle circle, double scale, Color color) {
 		double radius = circle.getRadius();
 		Vector2 center = circle.getCenter();
 		
@@ -123,7 +118,7 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, Polygon polygon, double scale, Color color) {
+	public static void render(Graphics2D g, Polygon polygon, double scale, Color color) {
 		Vector2[] vertices = polygon.getVertices();
 		int l = vertices.length;
 		
@@ -156,7 +151,7 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, Segment segment, double scale, Color color) {
+	public static void render(Graphics2D g, Segment segment, double scale, Color color) {
 		Vector2[] vertices = segment.getVertices();
 		
 		Line2D.Double l = new Line2D.Double(
@@ -177,7 +172,7 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, Capsule capsule, double scale, Color color) {
+	public static void render(Graphics2D g, Capsule capsule, double scale, Color color) {
 		// get the local rotation and translation
 		double rotation = capsule.getRotationAngle();
 		Vector2 center = capsule.getCenter();
@@ -236,7 +231,7 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, Ellipse ellipse, double scale, Color color) {
+	public static void render(Graphics2D g, Ellipse ellipse, double scale, Color color) {
 		// get the local rotation and translation
 		double rotation = ellipse.getRotationAngle();
 		Vector2 center = ellipse.getCenter();
@@ -272,7 +267,7 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, Slice slice, double scale, Color color) {
+	public static void render(Graphics2D g, Slice slice, double scale, Color color) {
 		double radius = slice.getSliceRadius();
 		double theta2 = slice.getTheta() * 0.5;
 		
@@ -314,7 +309,7 @@ public final class Graphics2DRenderer {
 	 * @param scale the scale to render the shape (pixels per dyn4j unit (typically meter))
 	 * @param color the color
 	 */
-	public static final void render(Graphics2D g, HalfEllipse halfEllipse, double scale, Color color) {
+	public static void render(Graphics2D g, HalfEllipse halfEllipse, double scale, Color color) {
 		double width = halfEllipse.getWidth();
 		double height = halfEllipse.getHeight();
 		
@@ -355,7 +350,7 @@ public final class Graphics2DRenderer {
 	 * @param color the fill color
 	 * @return Color
 	 */
-	private static final Color getOutlineColor(Color color) {
+	private static Color getOutlineColor(Color color) {
 		Color oc = color.darker();
 		return new Color(oc.getRed(), oc.getGreen(), oc.getBlue(), color.getAlpha());
 	}
@@ -364,7 +359,7 @@ public final class Graphics2DRenderer {
 	 * Returns a random color.
 	 * @return Color
 	 */
-	public static final Color getRandomColor() {
+	public static Color getRandomColor() {
 		return new Color(
 				(float)Math.random() * 0.5f + 0.5f,
 				(float)Math.random() * 0.5f + 0.5f,

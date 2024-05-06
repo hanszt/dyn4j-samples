@@ -61,7 +61,7 @@ public class Images extends SimulationFrame {
 	private static final BufferedImage CRATE = getImageSuppressExceptions("/org/dyn4j/samples/resources/Crate.png");
 	
 	/** Helper function to read the images from the class path */
-	private static final BufferedImage getImageSuppressExceptions(String pathOnClasspath) {
+	private static BufferedImage getImageSuppressExceptions(String pathOnClasspath) {
 		try {
 			return ImageIO.read(Images.class.getResource(pathOnClasspath));
 		} catch (IOException e) {
@@ -75,7 +75,7 @@ public class Images extends SimulationFrame {
 	 * @version 3.2.1
 	 * @since 3.2.0
 	 */
-	private final class ImageBody extends SimulationBody {
+	private static final class ImageBody extends SimulationBody {
 		/** The image to use, if required */
 		public BufferedImage image;
 		

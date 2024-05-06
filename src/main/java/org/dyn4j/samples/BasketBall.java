@@ -80,7 +80,7 @@ public class BasketBall extends SimulationFrame {
 	private static final BufferedImage BASKETBALL = getImageSuppressExceptions("/org/dyn4j/samples/resources/Basketball.png");
 
 	/** Helper function to read the images from the class path */
-	private static final BufferedImage getImageSuppressExceptions(String pathOnClasspath) {
+	private static BufferedImage getImageSuppressExceptions(String pathOnClasspath) {
 		try {
 			return ImageIO.read(BasketBall.class.getResource(pathOnClasspath));
 		} catch (IOException e) {

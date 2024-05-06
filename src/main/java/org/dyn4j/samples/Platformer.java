@@ -56,7 +56,7 @@ import org.dyn4j.world.listener.StepListenerAdapter;
  * @since 5.0.1
  * @version 3.2.0
  */
-public class Platformer extends SimulationFrame {
+public final class Platformer extends SimulationFrame {
 	/** The serial version id */
 	private static final long serialVersionUID = -313391186714427055L;
 

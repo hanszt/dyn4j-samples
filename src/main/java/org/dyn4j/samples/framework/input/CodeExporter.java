@@ -109,7 +109,7 @@ public class CodeExporter {
 	 * @param simulation the simulation to export
 	 * @return String
 	 */
-	public static final String export(String name, World<?> world) {
+	public static String export(String name, World<?> world) {
 		StringBuilder sb = new StringBuilder();
 		// this map contains the id to output name for bodies
 		Map<Object, String> idNameMap = new HashMap<Object, String>();
@@ -445,7 +445,7 @@ public class CodeExporter {
 	 * @param settings the settings
 	 * @return String
 	 */
-	private static final String export(Settings settings) {
+	private static String export(Settings settings) {
 		StringBuilder sb = new StringBuilder();
 		if (settings.getStepFrequency() != Settings.DEFAULT_STEP_FREQUENCY) {
 			sb.append(TAB2).append("settings.setStepFrequency(").append(1.0 / settings.getStepFrequency()).append(");").append(NEW_LINE);
@@ -508,7 +508,7 @@ public class CodeExporter {
 	 * @param mass the mass
 	 * @return String
 	 */
-	private static final String export(Mass mass) {
+	private static String export(Mass mass) {
 		StringBuilder sb = new StringBuilder();
 		// create a temporary mass so we can set the
 		// mass type and get the correct mass and inertia values
@@ -528,7 +528,7 @@ public class CodeExporter {
 	 * @param v the vector
 	 * @return String
 	 */
-	private static final String export(Vector2 v) {
+	private static String export(Vector2 v) {
 		StringBuilder sb = new StringBuilder();
 		sb.append("new Vector2(").append(v.x).append(", ").append(v.y).append(")");
 		return sb.toString();
@@ -540,7 +540,7 @@ public class CodeExporter {
 	 * @param tabs the tabs string for formatting
 	 * @return String
 	 */
-	private static final String export(Convex c, String tabs) {
+	private static String export(Convex c, String tabs) {
 		StringBuilder sb = new StringBuilder();
 		
 		if (c instanceof Circle) {
@@ -647,7 +647,7 @@ public class CodeExporter {
 	 * @param tabs the tabs string for formatting
 	 * @return String
 	 */
-	private static final String export(Filter f, String tabs) {
+	private static String export(Filter f, String tabs) {
 		StringBuilder sb = new StringBuilder();
 		
 		if (f == Filter.DEFAULT_FILTER) {
